@@ -30,6 +30,7 @@ export const Avatar = styled.div`
         width: 180px;
         height: 180px;
         border-radius: 50%;
+
     }
     > label {
         width: 48px;
@@ -50,6 +51,7 @@ export const Avatar = styled.div`
             width: 20px;
             height: 20px;
             color: ${({theme}) => theme.COLORS.GRAY_300} ;
+            cursor:pointer;
         }
     }
 `;
