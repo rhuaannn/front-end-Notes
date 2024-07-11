@@ -54,5 +54,8 @@ export const Form = styled.form`
             font-size: 20px;
             color: ${({ theme }) => theme.COLORS.GRAY_100};
         }
+        a:hover{
+            color: ${({theme}) => theme.COLORS.ORANGE}
+        }
     }
 `;
