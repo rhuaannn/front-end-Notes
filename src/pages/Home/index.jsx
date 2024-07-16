@@ -10,7 +10,7 @@ export function Home() {
     return (
         <Container>
             <Brand>
-                <h1>Rocket - Notes</h1>
+                <h1>RM - Notes</h1>
             </Brand>
             <Header></Header>
             <Menu>
@@ -37,18 +37,18 @@ export function Home() {
                             { id: "2", name: "NodeJs" },
                         ],
                     }}
-                />,
+                />
                    <Note
                     data={{
                         title: "React Modal",
                         tags: [
                             { id: "3", name: "React Native" },
-                            { id: "4", name: "Django" },
+                            { id: "4", name: "Django" }
                         ],
                     }}
                 />
             </Content>
-            <NewNote>
+            <NewNote to="/new">
                 <FiPlus />
                 Criar nota
             </NewNote>

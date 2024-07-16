@@ -1,10 +1,11 @@
 import { RiShutDownLine } from "react-icons/ri";
 import { Container, Profile, Logout } from "./style";
+import{Link} from "react-router-dom";
 
 export function Header() {
   return (
     <Container>
-      <Profile>
+      <Profile to="/profile">
         <img src="https://github.com/rhuaannn.png" />
         <div>
           <span>Bem-Vindo!</span>
