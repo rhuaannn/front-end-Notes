@@ -22,6 +22,14 @@ function AuthProvider({ children }) {
             }
         }
     }
+
+    function signOut(){
+        const token = localStorage.removeItem("@rmnotes:token");
+        const user = localStorage.removeItem("@rmnotes:user");
+
+        setData({});
+    }
+
     useEffect(() => {
         const token = localStorage.getItem("@rmnotes:token");
         const user = localStorage.getItem("@rmnotes:user");
@@ -31,8 +39,14 @@ function AuthProvider({ children }) {
             setData({ token, user: JSON.parse(user) });
         }
     }, []);
+
     return (
-        <AuthContext.Provider value={{ signIn, user: data.user }}>
+        <AuthContext.Provider value={{
+            signIn,
+            signOut,
+            user: data.user,
+
+            }}>
             {children}
         </AuthContext.Provider>
     );
