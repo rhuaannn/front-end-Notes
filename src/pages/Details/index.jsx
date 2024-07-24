@@ -7,16 +7,26 @@ import { Tag } from "../../components/Tag";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export function Details() {
     const [data, setData] = useState(null);
     const params = useParams();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-
-    function handleBack(){
-        navigate('/')
+    function handleBack() {
+        navigate("/");
+    }
+    async function handleDeleted() {
+        const deletedNoteConfirm = confirm("Tem certeza que deseja Excluir?");
+        console.log(deletedNoteConfirm);
+        if (deletedNoteConfirm) {
+            const res = await api.delete(`/notes/${params.id}`);
+            setData(res.data);
+            alert("Nota excluida com sucesso!");
+            navigate("/");
+        }
+        return;
     }
     useEffect(() => {
         async function fetchNote() {
@@ -33,7 +43,10 @@ export function Details() {
             {data && (
                 <main>
                     <Content>
-                        <ButtonText title="Excluir nota" />
+                        <ButtonText
+                            title="Excluir nota"
+                            onClick={handleDeleted}
+                        />
                         <h1>{data.title}</h1>
                         <p>{data.description}</p>
 
@@ -42,9 +55,8 @@ export function Details() {
                                 <Links>
                                     {data.links.map((link) => (
                                         <li key={String(link.id)}>
-                                            <a href={link.url}target="_blank">
+                                            <a href={link.url} target="_blank">
                                                 {link.url}
-
                                             </a>
                                         </li>
                                     ))}
@@ -54,7 +66,10 @@ export function Details() {
                         {data.tags && (
                             <Section title="Marcadores">
                                 {data.tags.map((tag) => (
-                                    <Tag key={String(tag.id)} title={tag.name} />
+                                    <Tag
+                                        key={String(tag.id)}
+                                        title={tag.name}
+                                    />
                                 ))}
                             </Section>
                         )}
