@@ -11,8 +11,10 @@ export function Header() {
         ? `${api.defaults.baseURL}/files/${user.avatar}`
         : avatarPlayer;
 
-    function handleShutdown(){
         const navigate = useNavigate();
+    function handleShutdown(){
+        navigate("/")
+       signOut()
     }
     return (
         <Container>
@@ -23,7 +25,7 @@ export function Header() {
                     <strong>{user.name}</strong>
                 </div>
             </Profile>
-            <Logout onClick={signOut}>
+            <Logout onClick={handleShutdown}>
                 <RiShutDownLine
                     onClick={handleShutdown}
                 />
